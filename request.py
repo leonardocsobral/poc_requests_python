@@ -68,6 +68,8 @@ class ApiRequests:
         print(response.text.encode('utf8'))
         status_code = response.status_code
         response_json = response.json()
+
+
         # response_utf = (response.text.enconde('utf8')
 
         return response_json and status_code
@@ -77,3 +79,36 @@ class ApiRequests:
 
         if r.status_code == 200:
             print('requests working')
+
+    def aci_transaction_post_improved_craft_oriented_object(self):
+        # API's URL
+        url = "https://test.oppwa.com/v1/payments"
+        # Authentication Data
+        user = "8ac7a4ca66c593000166c5db24000091"
+        pwd = "B9hjxAzTz8"
+        channel = "8ac7a4c7715ea88801715fe9a3900c15"
+        currency = "BRL"
+        # Card Data
+        brand = "VISA"
+        cardNumber = "4066559930861909"
+        cvv = "123"
+        cardExpiryMonth = "10"
+        cardExpiryYear = "2022"
+        cardHolder = "LeoSobral"
+        transactionType = "DB"
+        # Customer Data
+        taxId = "36742106816"
+        amount = random.randint(100) + 1
+        payload = {'authentication.userId': user, 'authentication.password': pwd, 'authentication.entityId': channel,
+                   'amount': amount,
+                   'currency': currency, 'paymentBrand': brand, 'paymentType': transactionType,
+                   'card.number': 4066559930861909, 'card.holder': cardHolder,
+                   'card.expiryMonth': cardExpiryMonth, 'card.expiryYear': cardExpiryYear, 'card.cvv': cvv,
+                   'customer.merchantCustomerId': taxId,
+                   'testMode': 'EXTERNAL'}
+
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)

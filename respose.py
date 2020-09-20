@@ -4,7 +4,7 @@ import requests
 
 class Responses():
 
-    def response_pure(self):
+    def response_pure():
         r = ApiRequests.aci_transaction_post_improved()
         print(r)
         if r.status.code == 200:
@@ -12,6 +12,8 @@ class Responses():
         else:
             print('Take a look at the class request')
 
-    def response_assertions(self):
+    def response_assertions():
+        import requests
         r = ApiRequests.aci_transaction_post_improved()
+
         assert r.status.code == 200
