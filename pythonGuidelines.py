@@ -110,3 +110,25 @@ def check_guess(mylist,guess):
     else:
         print("wrong guess!")
         print(mylist)
+
+
+def args_example(*args):
+    a = sum(args)*0.05
+    print(a)
+    return a
+
+args_example(10, 20, 30, 40, )
+
+def kwargs_example(**kwargs):
+    print(kwargs)
+    if 'fruit' in kwargs:
+        print('My fruit of choice is {}'.format(kwargs['fruit']))
+    else:
+        print('I did not find any fruit here')
+
+kwargs_example(fruit='Banana', meat='picanha')
+
+def arg_and_kwargs(*args, **kwargs):
+    print ('I would like {} kg of {}'.format(args[3],kwargs['churrasco']))
+
+arg_and_kwargs(5,25,20,30, churrasco='Picanha')
